@@ -1,33 +1,87 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <artifactId>web</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>Procurement Department web module</name>
+	<artifactId>web</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Procurement Department web module</name>
 
-  <parent>
-      <groupId>org.bukharov</groupId>
-      <artifactId>precurementDepartment-parent</artifactId>
-      <version>1.0</version>
-  </parent>
+	<parent>
+		<groupId>org.bukharov</groupId>
+		<artifactId>precurementDepartment-parent</artifactId>
+		<version>1.0</version>
+	</parent>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+	<properties>
+		<java.version>1.8</java.version>
 
-    <dependency>
-        <groupId>${project.groupId}</groupId>
-        <artifactId>logic</artifactId>
-        <version>${project.version}</version>
-    </dependency>
-  </dependencies>
-  <build>
-    <finalName>web</finalName>
-  </build>
+		<!-- Web -->
+		<jsp.version>2.2</jsp.version>
+		<jstl.version>1.2</jstl.version>
+		<servlet.version>3.1.0</servlet.version>
+
+		<!-- Spring -->
+		<spring-framework.version>4.1.5.RELEASE</spring-framework.version>
+	</properties>
+
+	<dependencyManagement>
+		<!--all spring dependencies -->
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${spring-framework.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!--  Logic module -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>logic</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		 <!-- Spring MVC -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+ 
+        <!-- Other Servlet Web dependencies -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
+        </dependency>
+ 
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+ 
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>${jsp.version}</version>
+            <scope>provided</scope>
+        </dependency>
+	</dependencies>
+	
+	<build>
+		<finalName>web</finalName>
+	</build>
 </project>

@@ -1,0 +1,13 @@
+logic/.classpath
+logic/.project
+logic/.settings/*
+logic/target
+*.class
+model/.classpath
+model/.project
+model/.settings/*
+model/target
+web/.settings/*
+web/.project
+web/.classpath
+web/target
