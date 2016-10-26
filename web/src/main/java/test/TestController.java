@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/employee-module")
 public class TestController {
   
   @Autowired
   ContactService cs;
   
-  @RequestMapping(value="/getAllEmployees", method = RequestMethod.GET)
+  @RequestMapping(value="/get", method = RequestMethod.GET)
   public String getAll(Model model){
     
     List<Contact> contacts = cs.findAll();
