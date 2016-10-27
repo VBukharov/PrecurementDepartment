@@ -3,6 +3,8 @@
  */
 package org.bukharov.procurementDepartment.model.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +21,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="contact_hobby_detail")
 @IdClass(ContactHobbyDetailPK.class)
-public class ContactHobbyDetail {
+public class ContactHobbyDetail implements Serializable{
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
   private Integer contactId;
   private String hobbyId;
   private Contact contact;

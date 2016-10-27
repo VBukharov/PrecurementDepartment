@@ -6,10 +6,12 @@ import java.util.List;
 import org.bukharov.procurementDepartment.model.entity.Contact;
 import org.bukharov.procurementDepartment.model.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
 public class TestController {
@@ -17,12 +19,18 @@ public class TestController {
   @Autowired
   ContactService cs;
   
-  @RequestMapping(value="/get", method = RequestMethod.GET)
-  public String getAll(Model model){
-    
+  @SuppressWarnings("rawtypes")
+  @RequestMapping(value="/contacts")
+  public ResponseEntity<List> getAll(){
+    System.out.println("before query");
     List<Contact> contacts = cs.findAll();
-    
-    model.addAttribute("contacts", contacts);
-    return "employeesListDisplay";
+    System.out.println("after query " + contacts.get(0).getFirstName());   
+    return new ResponseEntity<List>(contacts, HttpStatus.OK);
+  }
+
+  @SuppressWarnings("rawtypes")
+  @RequestMapping(value="/contact/{firstName}")
+  public ResponseEntity<List> getById(@PathVariable("firstName") String firstName){
+    return new ResponseEntity<List>(cs.findByFirstName(firstName), HttpStatus.OK);
   }
 }

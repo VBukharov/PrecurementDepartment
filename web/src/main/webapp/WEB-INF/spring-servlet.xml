@@ -12,7 +12,8 @@
 	<context:component-scan base-package="test"></context:component-scan>
 	
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
-	
+	<mvc:resources location="/views/" mapping="/views/**"></mvc:resources>
+	<mvc:annotation-driven />
 	<import resource="classpath:spring-logic-config.xml"/>
 	
 	<bean

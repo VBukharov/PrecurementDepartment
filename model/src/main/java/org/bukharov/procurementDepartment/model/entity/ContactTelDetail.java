@@ -1,5 +1,7 @@
 package org.bukharov.procurementDepartment.model.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +10,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="contact_tel_detail")
-public class ContactTelDetail {
+public class ContactTelDetail implements Serializable{
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
   private Integer id;
   private String telType;
   private String telNumber;
@@ -53,6 +62,7 @@ public class ContactTelDetail {
     this.version = version;
   }
   
+  @JsonBackReference
   @ManyToOne
   @JoinColumn(name="contact_id", referencedColumnName="id", nullable=false)
   public Contact getContact() {
