@@ -77,6 +77,18 @@ public class Author implements Serializable{
 	public void setBiography(String biography) {
 		this.biography = biography;
 	}
+
+  @Override
+  public boolean equals(Object obj) {
+    boolean result = false;
+    if(obj instanceof Author){
+      Author author = (Author)obj;
+      if(this.id == author.id && this.name.equals(author.name) && this.secondName.equals(author.secondName)
+          && this.surname.equals(author.surname) && this.biography.equals(author.biography))
+        result = true;
+    }
+    return result;
+  }
 	
 	
 }

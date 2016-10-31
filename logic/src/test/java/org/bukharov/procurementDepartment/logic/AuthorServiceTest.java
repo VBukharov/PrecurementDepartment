@@ -21,9 +21,11 @@ public class AuthorServiceTest {
   @Autowired
   AuthorService service;
   
+  @Test
   public void testCreateAuthor(){
     Author author = new Author(5, "testValue", "testValue", "testValue", "testValue");
     Author result = service.save(author);
+    System.out.println(result.getName() + " " + result.getSecondName());
     assertEquals(author, result);
   }
 
