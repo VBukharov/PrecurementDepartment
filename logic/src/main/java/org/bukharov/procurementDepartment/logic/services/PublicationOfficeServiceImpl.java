@@ -19,7 +19,7 @@ import com.google.common.collect.Lists;
 @Service("publicationOfficeService")
 @Repository
 @Transactional
-public class PublicationOfficeImpl implements PublicationOfficeService {
+public class PublicationOfficeServiceImpl implements PublicationOfficeService {
   @Autowired
   private PublicationOfficeRepository repository;
 
@@ -48,6 +48,21 @@ public class PublicationOfficeImpl implements PublicationOfficeService {
     return repository.findByDescription(description);
   }
 
- 
+  @Override
+  public PublicationOffice findByNameAndLocation(String name, String location) {
+    return repository.findByNameAndLocation(name, location);
+  }
+
+  @Override
+  public PublicationOffice save(PublicationOffice publicationOffice) {
+    return repository.save(publicationOffice);
+  }
+
+  @Override
+  public void delete(PublicationOffice publicationOffice) {
+    repository.delete(publicationOffice);
+  }
+
+  
 
 }

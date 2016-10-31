@@ -23,6 +23,16 @@ public class Author implements Serializable{
 	private String secondName;
 	private String biography;
 	
+	public Author() {}
+	
+	public Author(int id, String name, String surname, String secondName, String biography){
+	  this.id = id;
+	  this.name = name;
+	  this.surname = surname;
+	  this.secondName = secondName;
+	  this.biography = biography;
+	}
+	
 	@Id
 	@Column(name="author_id", insertable=true, updatable=true)
 	public Integer getId() {

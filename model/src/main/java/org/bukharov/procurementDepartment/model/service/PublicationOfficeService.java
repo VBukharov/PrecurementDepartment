@@ -6,11 +6,17 @@ import org.bukharov.procurementDepartment.model.entity.Contact;
 import org.bukharov.procurementDepartment.model.entity.PublicationOffice;
 
 public interface PublicationOfficeService {
-  List<PublicationOffice> findAll();
+  public List<PublicationOffice> findAll();
 
   public List<PublicationOffice> findByName(String name);
 
   public List<PublicationOffice> findByLocation(String location);
 
   public List<PublicationOffice> findByDescription(String description);
+  
+  public PublicationOffice findByNameAndLocation(String location, String description);
+  
+  public PublicationOffice save(PublicationOffice publicationOffice);
+  
+  public void delete(PublicationOffice publicationOffice);
 }

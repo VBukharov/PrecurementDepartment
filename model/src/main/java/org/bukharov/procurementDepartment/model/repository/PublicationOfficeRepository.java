@@ -14,4 +14,6 @@ public interface PublicationOfficeRepository
   public List<PublicationOffice> findByLocation(String location);
 
   public List<PublicationOffice> findByDescription(String description);
+  
+  public PublicationOffice findByNameAndLocation(String location, String description);
 }

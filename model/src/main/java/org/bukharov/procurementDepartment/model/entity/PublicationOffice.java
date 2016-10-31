@@ -20,6 +20,15 @@ public class PublicationOffice implements Serializable{
 	private String location;
 	private String description;
 	
+	public PublicationOffice() {}
+	
+	public PublicationOffice(int id, String name, String location, String description){
+	  this.id = id;
+	  this.name = name;
+	  this.location = location;
+	  this.description = description;
+	}
+	
 	@Id
 	@Column(name="publ_id", insertable=true, updatable=true)
 	public Integer getId() {
@@ -55,6 +64,18 @@ public class PublicationOffice implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+  @Override
+  public boolean equals(Object obj) {
+    boolean result = false;
+    if(obj instanceof PublicationOffice){
+      PublicationOffice tmp = (PublicationOffice)obj;
+      if(this.id == tmp.id && this.name.equals(tmp.name) 
+          && this.location.equals(tmp.location) && this.description.equals(tmp.description))
+        result = true;
+    }
+    return result;
+  }
 	
 	
 }
