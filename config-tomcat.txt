@@ -1,0 +1,14 @@
+Добавить в context.xml
+
+<Resource
+            name="jdbc/pd"
+            url="jdbc:postgresql://localhost:5432/postgres"
+            driverClassName="org.postgresql.Driver"
+            username="username"
+            password="password"
+            auth="Container"
+            type="javax.sql.DataSource"
+            maxActive="3"
+            maxIdle="2"
+            maxWait="10000"
+      />

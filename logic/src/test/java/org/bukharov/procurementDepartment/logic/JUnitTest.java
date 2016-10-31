@@ -21,8 +21,7 @@ public class JUnitTest extends TestCase {
 
 	@Test
 	public void testSampleService() {
-//		assertEquals(null, this.service.findAll());
-
+		assertEquals(null, this.service.findAll());
 	}
 
 }
