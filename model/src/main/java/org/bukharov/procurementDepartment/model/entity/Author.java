@@ -1,11 +1,16 @@
 package org.bukharov.procurementDepartment.model.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +27,7 @@ public class Author implements Serializable{
 	private String surname;
 	private String secondName;
 	private String biography;
+	private Set<Edition> editionSet;
 	
 	public Author() {}
 	
@@ -78,7 +84,26 @@ public class Author implements Serializable{
 		this.biography = biography;
 	}
 
-  @Override
+	
+  /**
+	 * @return the editionSet
+	 */
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="edition_author",
+				joinColumns=@JoinColumn(name="author_id"),
+				inverseJoinColumns=@JoinColumn(name="edition_id"))
+	public Set<Edition> getEditionSet() {
+		return editionSet;
+	}
+
+	/**
+	 * @param editionSet the editionSet to set
+	 */
+	public void setEditionSet(Set<Edition> editionSet) {
+		this.editionSet = editionSet;
+	}
+
+@Override
   public boolean equals(Object obj) {
     boolean result = false;
     if(obj instanceof Author){

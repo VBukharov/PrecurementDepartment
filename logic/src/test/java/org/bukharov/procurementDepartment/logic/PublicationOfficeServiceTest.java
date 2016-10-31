@@ -59,8 +59,8 @@ public class PublicationOfficeServiceTest {
   public void testUniqueNameAndLocation(){
     PublicationOffice publicationOffice1 = new PublicationOffice(5, "name 1", "location 1", "testValue 1");
     PublicationOffice publicationOffice2 = new PublicationOffice(6, "name 1", "location 1", "testValue 2");
-    PublicationOffice r1 = service.save(publicationOffice1);
-    PublicationOffice r2 = service.save(publicationOffice2);
+    service.save(publicationOffice1);
+    service.save(publicationOffice2);
     PublicationOffice result = service.findByNameAndLocation("name 1", "description 1");
   }
 
