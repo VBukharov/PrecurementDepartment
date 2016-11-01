@@ -26,101 +26,112 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @Transactional
 public class EditionServiceTest {
 
-	@Autowired
-	EditionService service;
+  @Autowired
+  EditionService service;
 
-	@Autowired
-	PublicationOfficeService publicationOfficeService;
+  @Autowired
+  PublicationOfficeService publicationOfficeService;
 
-	@Autowired
-	AuthorService authorService;
+  @Autowired
+  AuthorService authorService;
 
-	private PublicationOffice publicationOffice;
+  private PublicationOffice publicationOffice;
 
-	private Author author;
+  private Author author;
 
-	private Set<Author> authorSet;
+  private Set<Author> authorSet;
 
-	@Before
-	public void initTestVariables() {
-		int id = 5;
-		String name = "testValue";
-		String location = "testValue";
-		String description = "testValue";
-		publicationOffice = new PublicationOffice(id, name, location, description);
+  private Edition createEdition(){
+    int id = 5;
+    String name = "testValue";
+    int year = 2016;
+    int quantityOfPapers = 500;
+    int quantity = 100;
+    String annotation = "testValue";
+    String valueToSearch = "new test value";
+    publicationOfficeService.save(publicationOffice);
+    authorService.save(author);
+    Edition edition = new Edition(id, name, year, quantityOfPapers, quantity, annotation,
+        publicationOffice, authorSet);
+    return edition;
+  }
+  
+  @Before
+  public void initTestVariables() {
+    int id = 5;
+    String name = "testValue";
+    String location = "testValue";
+    String description = "testValue";
+    publicationOffice = new PublicationOffice(id, name, location, description);
 
-		String authorName = "testValude";
-		String surname = "testValue";
-		String secondName = "testValue";
-		String biography = "testValue";
-		author = new Author(id, authorName, surname, secondName, biography);
-		authorSet = new HashSet<>();
-		authorSet.add(author);
-	}
+    String authorName = "testValude";
+    String surname = "testValue";
+    String secondName = "testValue";
+    String biography = "testValue";
+    author = new Author(id, authorName, surname, secondName, biography);
+    authorSet = new HashSet<>();
+    authorSet.add(author);
+  }
 
-	@Test
-	@Ignore
-	public void testCreateEdition() {
-		int id = 5;
-		String name = "testValue";
-		int year = 2016;
-		int quantityOfPapers = 500;
-		int quantity = 100;
-		String annotation = "testValue";
+  @Test
+  public void testCreateEdition() {
+    Edition edition = createEdition();
+    Edition result = service.save(edition);
+    assertEquals(edition, result);
+  }
 
-		publicationOfficeService.save(publicationOffice);
-		authorService.save(author);
-		Edition edition = new Edition(id, name, year, quantityOfPapers, quantity, annotation, publicationOffice,
-				authorSet);
-		Edition result = service.save(edition);
-		assertEquals(edition, result);
-	}
+  @Test
+  public void testUpdateEdition() {
+    String valueToSearch = "new test value";
+    Edition edition = createEdition();
+    Edition result = service.save(edition);
+    result.setName(valueToSearch);
+    Edition toCompare = service.findByName(valueToSearch).get(0);
+    assertEquals(toCompare, result);
+  }
 
-	@Test
-	public void testUpdateEdition() {
-		int id = 5;
-		String name = "testValue";
-		int year = 2016;
-		int quantityOfPapers = 500;
-		int quantity = 100;
-		String annotation = "testValue";
-		String valueToSearch = "new test value";
-		publicationOfficeService.save(publicationOffice);
-		authorService.save(author);
-		Edition edition = new Edition(id, name, year, quantityOfPapers, quantity, annotation, publicationOffice,
-				authorSet);
-		Edition result = service.save(edition);
-		result.setName(valueToSearch);
-		Edition toCompare = service.findByName(valueToSearch).get(0);
-		assertEquals(toCompare, result);
-	}
+  @Test
+  public void testDeleteEdition() {
+    Edition edition = createEdition();
+    String testName = edition.getName();
+    int testYear = edition.getYear();
+    int beforeSize = service.findByNameAndYear(testName, testYear).size();
+    service.save(edition);
+    service.delete(edition);
+    assertEquals(beforeSize,service.findByNameAndYear(testName, testYear).size());
+  }
 
-	@Test
-	public void testDeleteEdition() {
-		String name = "testValue";
-		String surname = "testValue";
-		String secondName = "testValue";
-		// String biography = "testValue";
-		// int beforeSize = service.findByNameAndSurnameAndSecondName(name,
-		// surname, secondName).size();
-		// Edition edition = new Edition(5, name, surname, secondName,
-		// biography);
-		// service.save(edition);
-		// service.delete(edition);
-		// assertEquals(beforeSize,
-		// service.findByNameAndSurnameAndSecondName(name, surname,
-		// secondName).size());
-	}
+  @Test
+  public void testGetAllEditions() {
+     int addition = 5;
+     String testName = "testValue";
+     int beforeSize = service.findAll().size() + addition;
+     Edition edition = createEdition();
+     for(int i = 0; i < addition; i++){
+       edition.setId(i+10);
+       edition.setName(testName + i);
+       service.save(edition);
+     }
+     int afterSize = service.findAll().size();
+     assertEquals(beforeSize, afterSize);
+  }
 
-	@Test
-	public void testGetAllEditions() {
-		int beforeSize = service.findAll().size();
-		// int addition = 5;
-		// for(int i = 0; i < addition; i++){
-		// service.save(new Edition(i+10, "testValue"+i, "testValue"+i,
-		// "testValue"+i, "testValue"+i));
-		// }
-		// int afterSize = service.findAll().size();
-		// assertEquals(beforeSize + addition, afterSize);
-	}
+  @Test
+  //TODO Создание издания без существующего издательства
+  public void testCreateEditionWithoutPublicationOffice(){
+    
+  }
+  
+  @Test
+  //TODO Создание издания без существующего автора
+  public void testCreateEditionWithoutAuthor(){
+    
+  }
+  
+  @Test
+  //TODO Создание издания с существующим именем
+  public void testCreateEditionWithExistingName(){
+    
+  }
+  
 }

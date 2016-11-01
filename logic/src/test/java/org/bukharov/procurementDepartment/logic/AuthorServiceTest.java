@@ -59,17 +59,18 @@ public class AuthorServiceTest {
 
   @Test
   public void testGetAllAuthors(){
-    int beforeSize = service.findAll().size();
     int addition = 5;
+    int beforeSize = service.findAll().size() + addition;
     for(int i = 0; i < addition; i++){
       service.save(new Author(i+10, "testValue"+i, "testValue"+i, "testValue"+i, "testValue"+i));
     }
     int afterSize = service.findAll().size();
-    assertEquals(beforeSize + addition, afterSize);
+    assertEquals(beforeSize, afterSize);
   }
   
   @Test
   @Ignore
+  //TODO Получить все издания автора
   public void testGetAllPublications(){
     
   }
