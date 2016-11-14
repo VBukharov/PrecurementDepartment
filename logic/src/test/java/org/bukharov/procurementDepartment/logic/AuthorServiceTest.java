@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import javax.transaction.Transactional;
 
+import org.bukharov.procurementDepartment.logic.gateways.AuthorGateway;
 import org.bukharov.procurementDepartment.model.entity.Author;
 import org.bukharov.procurementDepartment.model.service.AuthorService;
 import org.junit.Ignore;
@@ -20,10 +21,18 @@ public class AuthorServiceTest {
   
   @Autowired
   AuthorService service;
+	
+//	@Autowired
+//	AuthorGateway gateway;
+//	
+//	@Test
+//	public void test(){
+//		gateway.findAll();
+//	}
   
   @Test
   public void testCreateAuthor(){
-    Author author = new Author(5, "testValue", "testValue", "testValue", "testValue");
+    Author author = new Author("testValue", "testValue", "testValue", "testValue");
     Author result = service.save(author);
     System.out.println(result.getName() + " " + result.getSecondName());
     assertEquals(author, result);
@@ -34,7 +43,7 @@ public class AuthorServiceTest {
     String name = "testValue";
     String surname = "testValue";
     String secondName = "testValue";
-    Author author = new Author(5, name, surname, secondName, "");
+    Author author = new Author(name, surname, secondName, "");
     service.save(author);
     Author result = service.findByNameAndSurnameAndSecondName(name, surname, secondName).get(0);
     result.setName("new value");
@@ -51,7 +60,7 @@ public class AuthorServiceTest {
     String secondName = "testValue";
     String biography = "testValue";
     int beforeSize = service.findByNameAndSurnameAndSecondName(name, surname, secondName).size();
-    Author author = new Author(5, name, surname, secondName, biography);
+    Author author = new Author(name, surname, secondName, biography);
     service.save(author);
     service.delete(author);
     assertEquals(beforeSize, service.findByNameAndSurnameAndSecondName(name, surname, secondName).size());
@@ -62,7 +71,7 @@ public class AuthorServiceTest {
     int beforeSize = service.findAll().size();
     int addition = 5;
     for(int i = 0; i < addition; i++){
-      service.save(new Author(i+10, "testValue"+i, "testValue"+i, "testValue"+i, "testValue"+i));
+      service.save(new Author("testValue"+i, "testValue"+i, "testValue"+i, "testValue"+i));
     }
     int afterSize = service.findAll().size();
     assertEquals(beforeSize + addition, afterSize);

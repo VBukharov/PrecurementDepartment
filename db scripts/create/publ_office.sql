@@ -1,5 +1,5 @@
 create table publ_office(
-    publ_id integer not null,
+    publ_id serial,
     publ_name varchar(30) not null,
     publ_location varchar(100) not null,
     publ_description varchar(150),

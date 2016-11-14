@@ -43,17 +43,16 @@ public class EditionServiceTest {
 
 	@Before
 	public void initTestVariables() {
-		int id = 5;
 		String name = "testValue";
 		String location = "testValue";
 		String description = "testValue";
-		publicationOffice = new PublicationOffice(id, name, location, description);
+		publicationOffice = new PublicationOffice(name, location, description);
 
 		String authorName = "testValude";
 		String surname = "testValue";
 		String secondName = "testValue";
 		String biography = "testValue";
-		author = new Author(id, authorName, surname, secondName, biography);
+		author = new Author(authorName, surname, secondName, biography);
 		authorSet = new HashSet<>();
 		authorSet.add(author);
 	}
@@ -61,7 +60,6 @@ public class EditionServiceTest {
 	@Test
 	@Ignore
 	public void testCreateEdition() {
-		int id = 5;
 		String name = "testValue";
 		int year = 2016;
 		int quantityOfPapers = 500;
@@ -70,15 +68,14 @@ public class EditionServiceTest {
 
 		publicationOfficeService.save(publicationOffice);
 		authorService.save(author);
-		Edition edition = new Edition(id, name, year, quantityOfPapers, quantity, annotation, publicationOffice,
-				authorSet);
+		Edition edition = new Edition(name, year, quantityOfPapers, quantity, annotation, publicationOffice,
+				author);
 		Edition result = service.save(edition);
 		assertEquals(edition, result);
 	}
 
 	@Test
 	public void testUpdateEdition() {
-		int id = 5;
 		String name = "testValue";
 		int year = 2016;
 		int quantityOfPapers = 500;
@@ -87,8 +84,8 @@ public class EditionServiceTest {
 		String valueToSearch = "new test value";
 		publicationOfficeService.save(publicationOffice);
 		authorService.save(author);
-		Edition edition = new Edition(id, name, year, quantityOfPapers, quantity, annotation, publicationOffice,
-				authorSet);
+		Edition edition = new Edition(name, year, quantityOfPapers, quantity, annotation, publicationOffice,
+				author);
 		Edition result = service.save(edition);
 		result.setName(valueToSearch);
 		Edition toCompare = service.findByName(valueToSearch).get(0);

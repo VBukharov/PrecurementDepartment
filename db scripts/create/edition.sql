@@ -1,10 +1,10 @@
 create table edition(
-	edition_id integer NOT NULL,
+	edition_id serial,
     edition_name character varying(30),
     edition_year integer NOT NULL,
     edition_quantity_of_papers integer NOT NULL,
     edition_quantity integer NOT NULL,
-    edition_anotation character varying(150),
+    edition_annotation character varying(150),
     publ_id integer NOT NULL,
     CONSTRAINT edition_pkey PRIMARY KEY (edition_id),
     CONSTRAINT edition_edition_name_key UNIQUE (edition_name),

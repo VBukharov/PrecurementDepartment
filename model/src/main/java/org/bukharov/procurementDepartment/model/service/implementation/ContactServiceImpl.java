@@ -1,4 +1,4 @@
-package org.bukharov.procurementDepartment.logic.services;
+package org.bukharov.procurementDepartment.model.service.implementation;
 
 import java.util.List;
 

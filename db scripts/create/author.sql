@@ -1,6 +1,6 @@
 CREATE TABLE author
 (
-    author_id integer NOT NULL,
+    author_id serial,
     author_name character varying(30) NOT NULL,
     author_surname character varying(30) NOT NULL,
     author_second_name character varying(30) NOT NULL,

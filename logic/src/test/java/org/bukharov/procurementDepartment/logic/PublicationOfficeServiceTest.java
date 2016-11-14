@@ -31,14 +31,14 @@ public class PublicationOfficeServiceTest {
   
   @Test
   public void testCreatePublicationOffice(){
-    PublicationOffice publicationOffice = new PublicationOffice(5, "testValue", "testValue", "testValue");
+    PublicationOffice publicationOffice = new PublicationOffice("testValue", "testValue", "testValue");
     PublicationOffice result = service.save(publicationOffice);
     assertEquals(publicationOffice, result);
   }
 
   @Test
   public void testUpdatePublicationOffice(){
-    PublicationOffice publicationOffice = new PublicationOffice(5, "testValue", "testValue", "testValue");
+    PublicationOffice publicationOffice = new PublicationOffice("testValue", "testValue", "testValue");
     service.save(publicationOffice);
     PublicationOffice result = service.findByNameAndLocation("testValue", "testValue");
     result.setName("new name");
@@ -49,7 +49,7 @@ public class PublicationOfficeServiceTest {
   
   @Test
   public void testDeletePublicationOffice(){
-    PublicationOffice publicationOffice = new PublicationOffice(5, "testValue", "testValue", "testValue");
+    PublicationOffice publicationOffice = new PublicationOffice("testValue", "testValue", "testValue");
     PublicationOffice result = service.save(publicationOffice);
     service.delete(publicationOffice);
     assertEquals(null, service.findByNameAndLocation("testValue", "testValue"));
@@ -57,8 +57,8 @@ public class PublicationOfficeServiceTest {
 
   @Test(expected=DataIntegrityViolationException.class)
   public void testUniqueNameAndLocation(){
-    PublicationOffice publicationOffice1 = new PublicationOffice(5, "name 1", "location 1", "testValue 1");
-    PublicationOffice publicationOffice2 = new PublicationOffice(6, "name 1", "location 1", "testValue 2");
+    PublicationOffice publicationOffice1 = new PublicationOffice("name 1", "location 1", "testValue 1");
+    PublicationOffice publicationOffice2 = new PublicationOffice("name 1", "location 1", "testValue 2");
     service.save(publicationOffice1);
     service.save(publicationOffice2);
     PublicationOffice result = service.findByNameAndLocation("name 1", "description 1");
@@ -69,7 +69,7 @@ public class PublicationOfficeServiceTest {
     int beforeSize = service.findAll().size();
     int addition = 5;
     for(int i = 0; i < addition; i++){
-      service.save(new PublicationOffice(i+10, "testValue"+i, "testValue"+i, "testValue"+i));
+      service.save(new PublicationOffice("testValue"+i, "testValue"+i, "testValue"+i));
     }
     int afterSize = service.findAll().size();
     assertEquals(beforeSize + addition, afterSize);

@@ -7,11 +7,14 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -29,30 +32,30 @@ public class Edition implements Serializable {
 	private Integer quantity;
 	private String annotation;
 	private PublicationOffice publicationOffice;
-	public Set<Author> authorSet;
-
-	/**
-	 * @return the id
-	 */
+	private Author author;
 
 	public Edition() {
 	}
 
-	public Edition(Integer id, String name, Integer year, Integer quantityOfPapers, Integer quantity, String annotation,
-			PublicationOffice publicationOffice, Set<Author> authorSet) {
-		super();
-		this.id = id;
+	public Edition(String name, Integer year, Integer quantityOfPapers, Integer quantity, String annotation,
+			PublicationOffice publicationOffice, Author author) {
 		this.name = name;
 		this.year = year;
 		this.quantityOfPapers = quantityOfPapers;
 		this.quantity = quantity;
 		this.annotation = annotation;
 		this.publicationOffice = publicationOffice;
-		this.authorSet = authorSet;
+		this.author = author;
 	}
+
+	/**
+	 * @return the id
+	 */
 
 	@Id
 	@Column(name = "edition_id", insertable = true, updatable = true)
+	@SequenceGenerator(name = "editionIdGen", sequenceName = "edition_edition_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "editionIdGen")
 	public Integer getId() {
 		return id;
 	}
@@ -166,25 +169,22 @@ public class Edition implements Serializable {
 	public void setPublicationOffice(PublicationOffice publicationOffice) {
 		this.publicationOffice = publicationOffice;
 	}
-	
-	
 
 	/**
-	 * @return the authorSet
+	 * @return the author
 	 */
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name="edition_author",
-			joinColumns=@JoinColumn(name="edition_id", referencedColumnName="edition_id"),
-			inverseJoinColumns=@JoinColumn(name="author_id", referencedColumnName="author_id"))
-	public Set<Author> getAuthorSet() {
-		return authorSet;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "author_id", referencedColumnName = "author_id")
+	public Author getAuthor() {
+		return author;
 	}
 
 	/**
-	 * @param authorSet the authorSet to set
+	 * @param author
+	 *            the author to set
 	 */
-	public void setAuthorSet(Set<Author> authorSet) {
-		this.authorSet = authorSet;
+	public void setAuthor(Author author) {
+		this.author = author;
 	}
 
 	/*
@@ -195,30 +195,27 @@ public class Edition implements Serializable {
 	@Override
 	public boolean equals(Object arg0) {
 		boolean result = false;
-		if(arg0 instanceof Edition){
+		if (arg0 instanceof Edition) {
 			Edition edition = (Edition) arg0;
-			if(this.id.equals(edition.id) 
-					&& this.name.equals(edition.name) 
-					&& this.year.equals(edition.year) 
-					&& this.quantity.equals(edition.quantity) 
-					&& this.quantityOfPapers.equals(edition.quantityOfPapers)
-					&& this.publicationOffice.equals(edition) 
+			if (this.id.equals(edition.id) && this.name.equals(edition.name) && this.year.equals(edition.year)
+					&& this.quantity.equals(edition.quantity) && this.quantityOfPapers.equals(edition.quantityOfPapers)
+					&& this.publicationOffice.equals(edition.publicationOffice)
 					&& this.annotation.equals(edition.annotation))
 				result = true;
 		}
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return this.id + ", " + this.name + ", " + this.year + ", "+ this.annotation + ", " + this.quantity + ", " +
-				this.quantityOfPapers ;
+		return this.id + ", " + this.name + ", " + this.year + ", " + this.annotation + ", " + this.quantity + ", "
+				+ this.quantityOfPapers;
 	}
-	
-	
 
 }
