@@ -193,10 +193,10 @@ public class Edition implements Serializable {
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
-	public boolean equals(Object arg0) {
+	public boolean equals(Object obj) {
 		boolean result = false;
-		if (arg0 instanceof Edition) {
-			Edition edition = (Edition) arg0;
+		if (obj instanceof Edition) {
+			Edition edition = (Edition) obj;
 			if (this.id.equals(edition.id) && this.name.equals(edition.name) && this.year.equals(edition.year)
 					&& this.quantity.equals(edition.quantity) && this.quantityOfPapers.equals(edition.quantityOfPapers)
 					&& this.publicationOffice.equals(edition.publicationOffice)

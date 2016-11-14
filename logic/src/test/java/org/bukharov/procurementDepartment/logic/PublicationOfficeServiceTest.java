@@ -76,8 +76,14 @@ public class PublicationOfficeServiceTest {
   }
   
   @Test
-  @Ignore
+  //TODO Получение всех изданий издательства
   public void testGetAllPublications(){
+    
+  }
+  
+  @Test
+  //TODO Создание издания с существующим названием и местоположением
+  public void testCreateEditionWithExistingNameAndLocation(){
     
   }
 }
