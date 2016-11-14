@@ -51,8 +51,8 @@ public class EditionServiceTest {
     String valueToSearch = "new test value";
     publicationOfficeService.save(publicationOffice);
     authorService.save(author);
-    Edition edition = new Edition(id, name, year, quantityOfPapers, quantity, annotation,
-        publicationOffice, authorSet);
+    Edition edition = new Edition(name, year, quantityOfPapers, quantity, annotation,
+        publicationOffice, author);
     return edition;
   }
   
@@ -62,13 +62,13 @@ public class EditionServiceTest {
     String name = "testValue";
     String location = "testValue";
     String description = "testValue";
-    publicationOffice = new PublicationOffice(id, name, location, description);
+    publicationOffice = new PublicationOffice(name, location, description);
 
     String authorName = "testValude";
     String surname = "testValue";
     String secondName = "testValue";
     String biography = "testValue";
-    author = new Author(id, authorName, surname, secondName, biography);
+    author = new Author(authorName, surname, secondName, biography);
     authorSet = new HashSet<>();
     authorSet.add(author);
   }
