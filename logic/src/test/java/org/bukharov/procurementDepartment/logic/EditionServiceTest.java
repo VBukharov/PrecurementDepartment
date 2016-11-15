@@ -42,7 +42,6 @@ public class EditionServiceTest {
   private Set<Author> authorSet;
 
   private Edition createEdition(){
-    int id = 5;
     String name = "testValue";
     int year = 2016;
     int quantityOfPapers = 500;

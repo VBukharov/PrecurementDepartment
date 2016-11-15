@@ -1,10 +1,8 @@
 package org.bukharov.procurementDepartment.logic.gateways.implementation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bukharov.procurementDepartment.logic.businessmodel.AuthorBO;
-import org.bukharov.procurementDepartment.logic.dto.AuthorBODTO;
 import org.bukharov.procurementDepartment.logic.gateways.mappers.AuthorGatewayMapper;
 import org.bukharov.procurementDepartment.model.entity.Author;
 import org.bukharov.procurementDepartment.model.service.AuthorService;

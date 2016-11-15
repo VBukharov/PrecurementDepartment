@@ -12,11 +12,24 @@ public class PublicationOfficeExecutionPlanDTO {
 
 	// TODO: Добавить создание Издания на основе DTO
 
+	public PublicationOfficeExecutionPlanDTO(){}
 	/**
 	 * @return the authorId
 	 */
 	public Integer getAuthorId() {
 		return authorId;
+	}
+
+	public PublicationOfficeExecutionPlanDTO(Integer authorId, Integer publicationOfficceId, String editionName,
+			Integer editionYear, Integer editionQuantity, Integer editionPaperQuantity, String editionAnnotation) {
+		super();
+		this.authorId = authorId;
+		this.publicationOfficceId = publicationOfficceId;
+		this.editionName = editionName;
+		this.editionYear = editionYear;
+		this.editionQuantity = editionQuantity;
+		this.editionPaperQuantity = editionPaperQuantity;
+		this.editionAnnotation = editionAnnotation;
 	}
 
 	/**

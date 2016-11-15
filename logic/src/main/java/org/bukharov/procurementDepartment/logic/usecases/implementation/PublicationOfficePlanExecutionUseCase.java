@@ -38,6 +38,7 @@ public class PublicationOfficePlanExecutionUseCase implements PublicationOfficeP
 			AuthorBO authorBO = authorGateway.findById(dto.getAuthorId());
 			PublicationOfficeBO publicationOfficeBO = publOfficeGateway.findById(dto.getPublicationOfficceId());
 			
+			// Создание Издания в методе DTO
 			EditionBO editionBO = new EditionBO(dto.getEditionName(), dto.getEditionYear(), dto.getEditionQuantity(),
 					dto.getEditionAnnotation(), dto.getEditionPaperQuantity(), authorBO, publicationOfficeBO);
 			
