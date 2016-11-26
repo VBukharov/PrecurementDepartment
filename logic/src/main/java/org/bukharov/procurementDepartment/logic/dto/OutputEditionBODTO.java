@@ -2,14 +2,14 @@ package org.bukharov.procurementDepartment.logic.dto;
 
 import java.util.List;
 
-public class EditionBODTO {
+public class OutputEditionBODTO {
 	private List<Integer> idList;
 
-	public EditionBODTO() {
+	public OutputEditionBODTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public EditionBODTO(List<Integer> idList){
+	public OutputEditionBODTO(List<Integer> idList){
 		this.idList = idList;
 	}
 	/**

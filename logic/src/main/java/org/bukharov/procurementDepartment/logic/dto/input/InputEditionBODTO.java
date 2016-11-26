@@ -1,9 +1,8 @@
-package org.bukharov.procurementDepartment.logic.dto;
+package org.bukharov.procurementDepartment.logic.dto.input;
 
-public class PublicationOfficeExecutionPlanDTO {
+public class InputEditionBODTO{
 
 	private Integer authorId;
-	private Integer publicationOfficceId;
 	private String editionName;
 	private Integer editionYear;
 	private Integer editionQuantity;
@@ -12,7 +11,7 @@ public class PublicationOfficeExecutionPlanDTO {
 
 	// TODO: Добавить создание Издания на основе DTO
 
-	public PublicationOfficeExecutionPlanDTO(){}
+	public InputEditionBODTO(){}
 	/**
 	 * @return the authorId
 	 */
@@ -20,11 +19,10 @@ public class PublicationOfficeExecutionPlanDTO {
 		return authorId;
 	}
 
-	public PublicationOfficeExecutionPlanDTO(Integer authorId, Integer publicationOfficceId, String editionName,
+	public InputEditionBODTO(Integer authorId, String editionName,
 			Integer editionYear, Integer editionQuantity, Integer editionPaperQuantity, String editionAnnotation) {
 		super();
 		this.authorId = authorId;
-		this.publicationOfficceId = publicationOfficceId;
 		this.editionName = editionName;
 		this.editionYear = editionYear;
 		this.editionQuantity = editionQuantity;
@@ -39,22 +37,7 @@ public class PublicationOfficeExecutionPlanDTO {
 	public void setAuthorId(Integer authorId) {
 		this.authorId = authorId;
 	}
-
-	/**
-	 * @return the publicationOfficceId
-	 */
-	public Integer getPublicationOfficceId() {
-		return publicationOfficceId;
-	}
-
-	/**
-	 * @param publicationOfficceId
-	 *            the publicationOfficceId to set
-	 */
-	public void setPublicationOfficceId(Integer publicationOfficceId) {
-		this.publicationOfficceId = publicationOfficceId;
-	}
-
+	
 	/**
 	 * @return the editionName
 	 */

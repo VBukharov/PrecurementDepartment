@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.bukharov.procurementDepartment.logic.dto.PublicationOfficeExecutionPlanDTO;
+import org.bukharov.procurementDepartment.logic.dto.output.InputEditionBODTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,10 +20,10 @@ public class PublicationOfficePlanExecutionUseCaseTest {
 	@Autowired
 	PublicationOfficePlanExecution useCase;
 	
-	private List<PublicationOfficeExecutionPlanDTO> dtoList;
+	private List<InputEditionBODTO> dtoList;
 	
 	@Before
-	public List<PublicationOfficeExecutionPlanDTO> initVariables(){
+	public List<InputEditionBODTO> initVariables(){
 		for(int i = 0; i < 9; i++){
 
 		}

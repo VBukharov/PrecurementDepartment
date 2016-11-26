@@ -1,4 +1,4 @@
-package org.bukharov.procurementDepartment.logic.gateways.mappers;
+package org.bukharov.procurementDepartment.model.gateways.mappers;
 
 import java.util.ArrayList;
 import java.util.List;

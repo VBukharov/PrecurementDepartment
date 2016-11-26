@@ -1,12 +1,12 @@
-package org.bukharov.procurementDepartment.logic.dto;
+package org.bukharov.procurementDepartment.logic.dto.output;
 
-public class PublicationOfficeBODTO {
+public class OutputPublicationOfficeBODTO {
 	private int id;
-	public PublicationOfficeBODTO() {
+	public OutputPublicationOfficeBODTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public PublicationOfficeBODTO(int id){
+	public OutputPublicationOfficeBODTO(int id){
 		this.id = id;
 	}
 

@@ -1,15 +1,13 @@
-package org.bukharov.procurementDepartment.logic.dto;
+package org.bukharov.procurementDepartment.logic.dto.output;
 
-import org.bukharov.procurementDepartment.logic.businessmodel.AuthorBO;
-
-public class AuthorBODTO {
+public class OutputAuthorBODTO {
 
 	private int id;
 
-	public AuthorBODTO() {
+	public OutputAuthorBODTO() {
 	}
 	
-	public AuthorBODTO(int id) {
+	public OutputAuthorBODTO(int id) {
 		this.id = id;
 	}
 	/**

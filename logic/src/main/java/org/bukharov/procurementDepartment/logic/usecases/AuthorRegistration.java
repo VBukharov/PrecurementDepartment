@@ -1,7 +1,8 @@
 package org.bukharov.procurementDepartment.logic.usecases;
 
-import org.bukharov.procurementDepartment.logic.dto.AuthorBODTO;
+import org.bukharov.procurementDepartment.logic.dto.output.OutputAuthorBODTO;
+import org.springframework.stereotype.Service;
 
-public interface AuthorRegistration{
-	public UseCaseOutput<AuthorBODTO> execute(String name, String surname, String lastname, String biography, Integer birthYear);
+public interface AuthorRegistration<T>{
+	public UseCaseOutput<OutputAuthorBODTO> execute(T dto);
 }

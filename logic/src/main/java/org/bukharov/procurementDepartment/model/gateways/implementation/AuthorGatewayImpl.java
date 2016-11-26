@@ -1,16 +1,17 @@
-package org.bukharov.procurementDepartment.logic.gateways.implementation;
+package org.bukharov.procurementDepartment.model.gateways.implementation;
 
 import java.util.List;
 
+import org.bukharov.procurementDepartment.logic.gateways.AuthorGateway;
 import org.bukharov.procurementDepartment.logic.businessmodel.AuthorBO;
-import org.bukharov.procurementDepartment.logic.gateways.mappers.AuthorGatewayMapper;
+import org.bukharov.procurementDepartment.model.gateways.mappers.AuthorGatewayMapper;
 import org.bukharov.procurementDepartment.model.entity.Author;
 import org.bukharov.procurementDepartment.model.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AuthorGateway implements  org.bukharov.procurementDepartment.logic.gateways.AuthorGateway {
+public class AuthorGatewayImpl implements  AuthorGateway {
 
 	@Autowired
 	AuthorService service;

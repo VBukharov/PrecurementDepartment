@@ -6,8 +6,9 @@ import java.util.List;
 import org.bukharov.procurementDepartment.logic.businessmodel.AuthorBO;
 import org.bukharov.procurementDepartment.logic.businessmodel.EditionBO;
 import org.bukharov.procurementDepartment.logic.businessmodel.PublicationOfficeBO;
-import org.bukharov.procurementDepartment.logic.dto.EditionBODTO;
-import org.bukharov.procurementDepartment.logic.dto.PublicationOfficeExecutionPlanDTO;
+import org.bukharov.procurementDepartment.logic.dto.OutputEditionBODTO;
+import org.bukharov.procurementDepartment.logic.dto.input.InputEditionBODTO;
+import org.bukharov.procurementDepartment.logic.dto.input.InputPublicationOfficePlanExecutionDTO;
 import org.bukharov.procurementDepartment.logic.gateways.AuthorGateway;
 import org.bukharov.procurementDepartment.logic.gateways.EditionGateway;
 import org.bukharov.procurementDepartment.logic.gateways.PublicationOfficeGateway;
@@ -17,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PublicationOfficePlanExecutionUseCase implements PublicationOfficePlanExecution{
+public class PublicationOfficePlanExecutionUseCase implements PublicationOfficePlanExecution<InputPublicationOfficePlanExecutionDTO>{
 
 	@Autowired
 	private EditionGateway gateway;
@@ -31,12 +32,15 @@ public class PublicationOfficePlanExecutionUseCase implements PublicationOfficeP
 	 * @see org.bukharov.procurementDepartment.logic.usecases.PublicationOfficePlanExecution#execute(java.lang.Integer, java.util.List)
 	 */
 	@Override
-	public UseCaseOutput<EditionBODTO> execute(Integer publicationOfficeId, List<PublicationOfficeExecutionPlanDTO> dtoList) {
+	public UseCaseOutput<OutputEditionBODTO> execute(InputPublicationOfficePlanExecutionDTO inputDto) {
 		List<Integer> idList = new ArrayList<>();
-		for(PublicationOfficeExecutionPlanDTO dto : dtoList){
+		
+		// TODO Проверка наличия издательства в БД
+		PublicationOfficeBO publicationOfficeBO = publOfficeGateway.findById(inputDto.getPublicationOfficeId());
+		
+		for(InputEditionBODTO dto : inputDto.getDtoList()){
 			
 			AuthorBO authorBO = authorGateway.findById(dto.getAuthorId());
-			PublicationOfficeBO publicationOfficeBO = publOfficeGateway.findById(dto.getPublicationOfficceId());
 			
 			// Создание Издания в методе DTO
 			EditionBO editionBO = new EditionBO(dto.getEditionName(), dto.getEditionYear(), dto.getEditionQuantity(),
@@ -45,7 +49,7 @@ public class PublicationOfficePlanExecutionUseCase implements PublicationOfficeP
 			idList.add(gateway.create(editionBO));
 		}
 
-		return new EditionOutput(new EditionBODTO(idList));
+		return new PublicationOfficePlanExecutionOutput(new OutputEditionBODTO(idList));
 	}
 	
 }

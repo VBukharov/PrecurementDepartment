@@ -1,7 +1,7 @@
 package org.bukharov.procurementDepartment.logic.usecases;
 
-import org.bukharov.procurementDepartment.logic.dto.PublicationOfficeBODTO;
+import org.bukharov.procurementDepartment.logic.dto.output.OutputPublicationOfficeBODTO;
 
-public interface PublicationOfficeRegistration {
-	public UseCaseOutput<PublicationOfficeBODTO> execute(String name, String location, String description);
+public interface PublicationOfficeRegistration<T> {
+	public UseCaseOutput<OutputPublicationOfficeBODTO> execute(T inputDto);
 }

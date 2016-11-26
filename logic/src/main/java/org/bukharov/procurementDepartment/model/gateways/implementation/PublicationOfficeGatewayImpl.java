@@ -1,17 +1,18 @@
-package org.bukharov.procurementDepartment.logic.gateways.implementation;
+package org.bukharov.procurementDepartment.model.gateways.implementation;
 
 import java.util.List;
 
+import org.bukharov.procurementDepartment.logic.gateways.PublicationOfficeGateway;
 import org.bukharov.procurementDepartment.logic.businessmodel.PublicationOfficeBO;
-import org.bukharov.procurementDepartment.logic.gateways.mappers.PublicationOfficeGatewayMapper;
 import org.bukharov.procurementDepartment.model.entity.PublicationOffice;
+import org.bukharov.procurementDepartment.model.gateways.mappers.PublicationOfficeGatewayMapper;
 import org.bukharov.procurementDepartment.model.service.PublicationOfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PublicationOfficeGateway
-		implements org.bukharov.procurementDepartment.logic.gateways.PublicationOfficeGateway {
+public class PublicationOfficeGatewayImpl
+		implements PublicationOfficeGateway {
 
 	@Autowired
 	private PublicationOfficeService service;

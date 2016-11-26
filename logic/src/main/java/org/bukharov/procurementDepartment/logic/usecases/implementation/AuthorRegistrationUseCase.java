@@ -1,16 +1,16 @@
 package org.bukharov.procurementDepartment.logic.usecases.implementation;
 
 import org.bukharov.procurementDepartment.logic.businessmodel.AuthorBO;
-import org.bukharov.procurementDepartment.logic.dto.AuthorBODTO;
+import org.bukharov.procurementDepartment.logic.dto.input.InputAuthorBODTO;
+import org.bukharov.procurementDepartment.logic.dto.output.OutputAuthorBODTO;
 import org.bukharov.procurementDepartment.logic.gateways.AuthorGateway;
 import org.bukharov.procurementDepartment.logic.usecases.AuthorRegistration;
 import org.bukharov.procurementDepartment.logic.usecases.UseCaseOutput;
-import org.bukharov.procurementDepartment.model.entity.Author;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AuthorRegistrationUseCase implements AuthorRegistration {
+public class AuthorRegistrationUseCase implements AuthorRegistration<InputAuthorBODTO> {
 
 	@Autowired
 	private AuthorGateway gateway;
@@ -24,9 +24,9 @@ public class AuthorRegistrationUseCase implements AuthorRegistration {
 	 * java.lang.String, java.lang.Integer)
 	 */
 	@Override
-	public UseCaseOutput<AuthorBODTO> execute(String name, String surname, String lastname, String biography, Integer birthYear) {
-		int id = gateway.create(new AuthorBO(name, surname, lastname, biography));
-		return new AuthorOutput(new AuthorBODTO(id));
+	public UseCaseOutput<OutputAuthorBODTO> execute(InputAuthorBODTO inputDto) {
+		int id = gateway.create(new AuthorBO(inputDto.getName(), inputDto.getSurname(), inputDto.getSecondName(), inputDto.getBiography()));
+		return new AuthorOutput(new OutputAuthorBODTO(id));
 	}
 	
 }

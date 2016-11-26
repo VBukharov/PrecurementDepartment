@@ -1,16 +1,17 @@
-package org.bukharov.procurementDepartment.logic.gateways.implementation;
+package org.bukharov.procurementDepartment.model.gateways.implementation;
 
 import java.util.List;
 
 import org.bukharov.procurementDepartment.logic.businessmodel.EditionBO;
-import org.bukharov.procurementDepartment.logic.gateways.mappers.EditionGatewayMapper;
+import org.bukharov.procurementDepartment.logic.gateways.EditionGateway;
 import org.bukharov.procurementDepartment.model.entity.Edition;
+import org.bukharov.procurementDepartment.model.gateways.mappers.EditionGatewayMapper;
 import org.bukharov.procurementDepartment.model.service.EditionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EditionGateway implements org.bukharov.procurementDepartment.logic.gateways.EditionGateway {
+public class EditionGatewayImpl implements EditionGateway {
 
 	@Autowired
 	private EditionService service;

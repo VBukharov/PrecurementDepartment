@@ -12,8 +12,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>model</module>
         <module>logic</module>
+        <!-- <module>model</module> -->
         <module>web</module>
     </modules>
 
@@ -200,7 +200,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>18.0</version>
+            <version>19.0</version>
         </dependency>
     </dependencies>
 </project>
