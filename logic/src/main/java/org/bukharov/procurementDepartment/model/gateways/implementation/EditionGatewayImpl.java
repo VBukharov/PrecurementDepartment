@@ -33,12 +33,14 @@ public class EditionGatewayImpl implements EditionGateway {
 	}
 
 	@Override
-	public void delete(EditionBO editionBO) {
-		service.delete(EditionGatewayMapper.createEdition(editionBO));
+	public void delete(int id) {
+		Edition edition = service.findById(id);
+		service.delete(edition);
 	}
 
 	@Override
-	public void update(EditionBO editionBO) {
-		service.save(EditionGatewayMapper.createEdition(editionBO));
+	public void update(int id) {
+		Edition edition = service.findById(id);
+		service.save(edition);
 	}
 }

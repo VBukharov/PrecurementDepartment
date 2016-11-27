@@ -14,4 +14,6 @@ public interface AuthorRepository extends CrudRepository<Author, Serializable>{
   public List<Author> findBySecondName(String secondName);
   
   public List<Author> findByNameAndSurnameAndSecondName(String name, String surname, String secondName);
+  
+  public Author findByNameAndSurnameAndSecondNameAndBiography(String name, String surname, String secondName, String biography);
 }

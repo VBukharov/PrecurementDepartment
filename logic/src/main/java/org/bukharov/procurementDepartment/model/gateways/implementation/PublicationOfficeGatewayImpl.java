@@ -11,12 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PublicationOfficeGatewayImpl
-		implements PublicationOfficeGateway {
+public class PublicationOfficeGatewayImpl implements PublicationOfficeGateway {
 
 	@Autowired
 	private PublicationOfficeService service;
-	
+
 	@Override
 	public PublicationOfficeBO findById(int id) {
 		return PublicationOfficeGatewayMapper.createPublicationOfficeBO(service.findById(id));
@@ -29,18 +28,21 @@ public class PublicationOfficeGatewayImpl
 
 	@Override
 	public int create(PublicationOfficeBO publicationOfficeBO) {
-		PublicationOffice publicationOffice = service.save(PublicationOfficeGatewayMapper.createPublicationOffice(publicationOfficeBO));
+		PublicationOffice publicationOffice = service
+				.save(PublicationOfficeGatewayMapper.createPublicationOffice(publicationOfficeBO));
 		return publicationOffice.getId();
 	}
 
 	@Override
-	public void delete(PublicationOfficeBO publicationOfficeBO) {
-		service.delete(PublicationOfficeGatewayMapper.createPublicationOffice(publicationOfficeBO));
+	public void delete(int id) {
+		PublicationOffice publicationOffice = service.findById(id);
+		service.delete(publicationOffice);
 	}
 
 	@Override
-	public void update(PublicationOfficeBO publicationOfficeBO) {
-		service.save(PublicationOfficeGatewayMapper.createPublicationOffice(publicationOfficeBO));
+	public void update(int id) {
+		PublicationOffice office = service.findById(id);
+		service.save(office);
 	}
 
 }

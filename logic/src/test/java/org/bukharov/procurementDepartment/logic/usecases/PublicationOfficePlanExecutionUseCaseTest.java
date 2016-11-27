@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.bukharov.procurementDepartment.logic.dto.output.InputEditionBODTO;
+import org.bukharov.procurementDepartment.logic.dto.input.InputEditionBODTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class PublicationOfficePlanExecutionUseCaseTest {
 
 	@Autowired
-	PublicationOfficePlanExecution useCase;
+	PublicationOfficePlanExecution<InputEditionBODTO> useCase;
 	
 	private List<InputEditionBODTO> dtoList;
 	

@@ -53,6 +53,12 @@ public class AuthorServiceImpl implements AuthorService {
 	public List<Author> findByNameAndSurnameAndSecondName(String name, String surname, String secondName) {
 		return repository.findByNameAndSurnameAndSecondName(name, surname, secondName);
 	}
+	
+	@Override
+	public Author findByNameAndSurnameAndSecondNameAndBiography(String name, String surname, String secondName,
+			String biography) {
+		return repository.findByNameAndSurnameAndSecondNameAndBiography(name, surname, secondName, biography);
+	}
 
 	@Override
 	public Author save(Author author) {

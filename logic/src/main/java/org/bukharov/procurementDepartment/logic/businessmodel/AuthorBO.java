@@ -7,9 +7,12 @@ public class AuthorBO {
 	private String secondName;
 	private String biography;
 
-	public AuthorBO() {}
-
-	public AuthorBO(String name, String surname, String secondName, String biography) {
+	public AuthorBO(String name, String surname, String secondName, String biography){
+		if( name == null || name.isEmpty() || surname == null || surname.isEmpty() || 
+				secondName == null || secondName.isEmpty() || biography == null || biography.isEmpty()){
+			throw new IllegalArgumentException(" Все поля класса AuthorBO должны быть инициализированы не пустым значением! "
+					+ ". Ошибка создания при name=" + name + ", surname=" + surname + ", secondName=" + secondName + ", biography="+biography );
+		}
 		this.name = name;
 		this.surname = surname;
 		this.secondName = secondName;

@@ -6,10 +6,13 @@ public class PublicationOfficeBO {
 	private String location;
 	private String description;
 
-	public PublicationOfficeBO() {
-	}
-
 	public PublicationOfficeBO(String name, String location, String description) {
+		if (name == null || name.isEmpty() || location == null || location.isEmpty() || description == null
+				|| description.isEmpty())
+			throw new IllegalArgumentException(
+					"Все поля класса PublicationOfficeBO должны быть инициализированы не пустым значением! "
+							+ " Ошибка создания при name=" + name + ", location=" + location + ", description="
+							+ description);
 		this.name = name;
 		this.location = location;
 		this.description = description;

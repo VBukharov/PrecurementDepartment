@@ -13,6 +13,8 @@ import org.bukharov.procurementDepartment.model.entity.PublicationOffice;
 public class EditionGatewayMapper {
 
 	public static EditionBO createEditionBO(Edition edition) {
+		if(edition == null)
+			return null;
 		AuthorBO authorBO = AuthorGatewayMapper.createAuthorBO(edition.getAuthor());
 		PublicationOfficeBO publicationOfficeBO = PublicationOfficeGatewayMapper
 				.createPublicationOfficeBO(edition.getPublicationOffice());
@@ -21,16 +23,20 @@ public class EditionGatewayMapper {
 	}
 
 	public static Edition createEdition(EditionBO editionBO) {
+		if(editionBO == null)
+			return null;
 		Author author = AuthorGatewayMapper.createAuthor(editionBO.getAuthor());
 		PublicationOffice publicationOffice = PublicationOfficeGatewayMapper
 				.createPublicationOffice(editionBO.getPublicationOffice());
 		return new Edition(editionBO.getName(), editionBO.getYear(), editionBO.getQuantityOfPapers(),
 				editionBO.getQuantity(), editionBO.getAnnotation(), publicationOffice, author);
 	}
-	
-	public static List<EditionBO> createAuthorBOList(List<Edition> editionList){
+
+	public static List<EditionBO> createAuthorBOList(List<Edition> editionList) {
+		if(editionList == null)
+			return null;
 		List<EditionBO> result = new ArrayList<>();
-		for(Edition edition: editionList){
+		for (Edition edition : editionList) {
 			result.add(createEditionBO(edition));
 		}
 		return result;

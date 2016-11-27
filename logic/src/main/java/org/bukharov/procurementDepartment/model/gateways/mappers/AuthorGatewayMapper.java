@@ -8,6 +8,8 @@ import org.bukharov.procurementDepartment.model.entity.Author;
 
 public class AuthorGatewayMapper {
 	public static AuthorBO createAuthorBO(Author author){
+		if(author == null)
+			return null;
 		return new AuthorBO(author.getName(), author.getSurname(), author.getSecondName(), author.getBiography());
 	}
 	

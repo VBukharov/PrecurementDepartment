@@ -11,11 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AuthorGatewayImpl implements  AuthorGateway {
+public class AuthorGatewayImpl implements AuthorGateway {
 
 	@Autowired
 	AuthorService service;
-	
+
 	@Override
 	public AuthorBO findById(int id) {
 		return AuthorGatewayMapper.createAuthorBO(service.findById(id));
@@ -33,13 +33,15 @@ public class AuthorGatewayImpl implements  AuthorGateway {
 	}
 
 	@Override
-	public void update(AuthorBO authorBO) {
-		service.save(AuthorGatewayMapper.createAuthor(authorBO));
+	public void update(int id) {
+		Author author = service.findById(id);
+		service.save(author);
 	}
 
 	@Override
-	public void delete(AuthorBO authorBO) {
-		service.delete(AuthorGatewayMapper.createAuthor(authorBO));
+	public void delete(int id) {
+		Author author = service.findById(id);
+		service.delete(author);
 	}
-	
+
 }
